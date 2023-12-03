@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ucan.edu.HistoricoMedico.entities.Localizacao;
 import ucan.edu.HistoricoMedico.https.utils.ResponseBody;
-import ucan.edu.HistoricoMedico.services.LocalizacaoService;
 import ucan.edu.HistoricoMedico.services.implementados.LocalizacaoServiceImpl;
 
 

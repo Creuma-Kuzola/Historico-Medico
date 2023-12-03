@@ -6,7 +6,6 @@ package ucan.edu.HistoricoMedico.controllers;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.function.EntityResponse;
 import ucan.edu.HistoricoMedico.entities.TipoSanguineo;
 import ucan.edu.HistoricoMedico.https.utils.ResponseBody;
 import ucan.edu.HistoricoMedico.services.implementados.TipoSanguineoServiceImpl;

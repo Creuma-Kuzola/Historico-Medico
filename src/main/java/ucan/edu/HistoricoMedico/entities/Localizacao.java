@@ -5,7 +5,6 @@
 package ucan.edu.HistoricoMedico.entities;
 
 import java.io.Serializable;
-import java.util.List;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

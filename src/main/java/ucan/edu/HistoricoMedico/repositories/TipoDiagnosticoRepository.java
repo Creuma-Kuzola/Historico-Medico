@@ -5,6 +5,7 @@
 package ucan.edu.HistoricoMedico.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 import ucan.edu.HistoricoMedico.entities.TipoDiagnostico;
 import ucan.edu.HistoricoMedico.entities.TipoSanguineo;
 
@@ -12,6 +13,7 @@ import ucan.edu.HistoricoMedico.entities.TipoSanguineo;
  *
  * @author jussyleitecode
  */
+@Repository
 public interface TipoDiagnosticoRepository extends JpaRepository<TipoDiagnostico, Integer>
 {
     

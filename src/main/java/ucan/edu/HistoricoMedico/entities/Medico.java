@@ -5,34 +5,38 @@
 package ucan.edu.HistoricoMedico.entities;
 
 import java.io.Serializable;
-import java.util.List;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 /**
  *
- * @author jussyleitecode
+ * @author creuma
  */
+@Entity
+@Table(catalog = "registo_medico_multiperfil", schema = "public")
+
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@Entity
-@Table(name = "tipo_instituicacao_de_saude", catalog = "registo_medico", schema = "public")
-public class TipoInstituicacaoDeSaude implements Serializable
-{
+@ToString
+public class Medico implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "pk_tipo_instituicacao_de_saude", nullable = false)
-    private Integer pkTipoInstituicacaoDeSaude;
+    @Column(name = "pk_medico", nullable = false)
+    private Integer pkMedico;
     @Basic(optional = false)
     @Column(nullable = false, length = 2147483647)
     private String nome;
-
+    @Basic(optional = false)
+    @Column(name = "numero_telefone", nullable = false, length = 2147483647)
+    private String numeroTelefone;
+    @Column(name = "numero_ordem")
+    private Integer numeroOrdem;
+    @JoinColumn(name = "fk_sexo", referencedColumnName = "pk_sexo")
+    @ManyToOne
+    private Sexo fkSexo;    
 }
