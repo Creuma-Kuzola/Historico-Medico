@@ -4,9 +4,13 @@
  */
 package ucan.edu.HistoricoMedico.repositories;
 
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import ucan.edu.HistoricoMedico.entities.ContactoDeEmergenciaPaciente;
+import ucan.edu.HistoricoMedico.entities.ReceitaMedicamento;
 
 /**
  *
@@ -15,4 +19,6 @@ import ucan.edu.HistoricoMedico.entities.ContactoDeEmergenciaPaciente;
 @Repository
 public interface ContactoDeEmergenciaPacienteRepository extends JpaRepository<ContactoDeEmergenciaPaciente, Integer> {
     
+     @Query("SELECT cep FROM ContactoDeEmergenciaPaciente cep WHERE cep.fkPaciente.pkPaciente = :fkPaciente")
+    public List<ContactoDeEmergenciaPaciente> findContactoDeEmergenciaPacienteByPkPaciente(@Param("fkPaciente") Integer fkPaciente);
 }

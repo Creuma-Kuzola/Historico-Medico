@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import ucan.edu.HistoricoMedico.entities.Paciente;
 import ucan.edu.HistoricoMedico.https.utils.ResponseBody;
 import ucan.edu.HistoricoMedico.services.implementados.PacienteServiceImpl;
+import ucan.edu.HistoricoMedico.utils.HistoricoMedico;
 
 /**
  *
@@ -39,6 +40,17 @@ public class PacienteController extends BaseController {
             return this.ok("Paciente encontrados com sucesso!", lista);
         }
         return this.naoEncontrado("Não existem pacientes cadastrados", lista);
+
+    }
+    
+    @GetMapping("/historicoMedico/{fkPaciente}")
+    public ResponseEntity<ResponseBody> findHistoricoMedico(@PathVariable("fkPaciente") Integer fkPaciente) {
+        HistoricoMedico historicoMedico = pacienteServiceImpl.findHistoricoMedicoDeUmPaciente(fkPaciente);
+        if (historicoMedico != null) {
+            
+            return this.ok("Historico Médico encontrados com sucesso!", historicoMedico);
+        }
+        return this.naoEncontrado("Historico Médico pacientes cadastrados", historicoMedico);
 
     }
 

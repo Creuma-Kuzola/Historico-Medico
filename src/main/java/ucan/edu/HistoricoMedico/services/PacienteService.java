@@ -11,7 +11,10 @@ import java.util.Optional;
  *
  * @author jussyleitecode
  */
-public interface PacienteService<T, k>
-{
-   
+public interface PacienteService<T, K> {
+
+
+    public T findHistoricoMedicoDeUmPaciente(K k);
+
+    
 }

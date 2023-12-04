@@ -10,7 +10,7 @@ import java.util.List;
  *
  * @author creuma
  */
-public interface ContactoDeEmergenciaPacienteService <T, K> {
-    
-    public List<T> findContactoEmergenciaPacienteByPkPaciente(K k);
+public interface CirurgiaMedicoService<T, K> {
+
+    public List<T> findCirurgiaMedicoByPkPaciente(K k);
 }

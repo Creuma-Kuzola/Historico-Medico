@@ -36,6 +36,11 @@ public class ContactoDeEmergenciaPacienteController extends BaseController{
         return this.ok("Contactos de Emergência listados com sucesso.", this.contactoDeEmergenciaPacienteServiceImpl.findAll());
     }
     
+    @GetMapping("/findAll/{fkPaciente}")
+    public ResponseEntity<ResponseBody> findContactoDeEmergenciaPacienteByPkPaciente(@PathVariable("fkPaciente") Integer fkPaciente) {
+        return this.ok("Contactos de Emergência listados com sucesso.", this.contactoDeEmergenciaPacienteServiceImpl.findContactoEmergenciaPacienteByPkPaciente(fkPaciente));
+    }
+    
     @GetMapping("/{id}")
     public ResponseEntity<ResponseBody> findById(@PathVariable("id") Integer id){
         Optional<ContactoDeEmergenciaPaciente> contactoDeEmergencia = this.contactoDeEmergenciaPacienteServiceImpl.findById(id);

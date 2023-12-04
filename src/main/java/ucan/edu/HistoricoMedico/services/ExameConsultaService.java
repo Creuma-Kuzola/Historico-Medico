@@ -13,5 +13,6 @@ import java.util.Optional;
  */
 public interface ExameConsultaService<T, k>
 {
+    public List<T> carrergaraExameConsultaByPaciente(k k);
 
 }

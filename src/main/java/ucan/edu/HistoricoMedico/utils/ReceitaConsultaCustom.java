@@ -20,7 +20,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class ReceitaConsultaConstum {
+public class ReceitaConsultaCustom {
 
     private Integer pkReceita;
     private Date dataReceita;

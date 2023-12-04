@@ -13,28 +13,28 @@ import ucan.edu.HistoricoMedico.entities.ReceitaMedicamento;
 import ucan.edu.HistoricoMedico.entities.Sexo;
 import ucan.edu.HistoricoMedico.repositories.ReceitaMedicamentoRepository;
 import ucan.edu.HistoricoMedico.services.ReceitaMedicamentoService;
-import ucan.edu.HistoricoMedico.utils.ReceitaConsultaConstum;
+import ucan.edu.HistoricoMedico.utils.ReceitaConsultaCustom;
 
 /**
  *
  * @author creuma
  */
 @Service
-public class ReceitaMedicamentoServiceImpl extends AbstractService<ReceitaMedicamento, Integer> implements ReceitaMedicamentoService<ReceitaConsultaConstum, Integer> {
+public class ReceitaMedicamentoServiceImpl extends AbstractService<ReceitaMedicamento, Integer> implements ReceitaMedicamentoService<ReceitaConsultaCustom, Integer> {
 
     @Autowired
     ReceitaMedicamentoRepository receitaMedicamentoRepository;
 
     @Override
-    public List<ReceitaConsultaConstum> findReceitaByPkPaciente(Integer k) {
+    public List<ReceitaConsultaCustom> findReceitaByPkPaciente(Integer k) {
 
         List<ReceitaMedicamento> lista = receitaMedicamentoRepository
                 .encontrarReceitaPaciente(k);
 
-        List<ReceitaConsultaConstum> listaFinal = new ArrayList<>();
+        List<ReceitaConsultaCustom> listaFinal = new ArrayList<>();
         if (!lista.isEmpty()) {
             for (ReceitaMedicamento r : lista) {
-                ReceitaConsultaConstum receitaConsultaConstum = new ReceitaConsultaConstum();
+                ReceitaConsultaCustom receitaConsultaConstum = new ReceitaConsultaCustom();
 
                 receitaConsultaConstum.setPkReceita(r.getFkReceita().getPkReceita());
                 receitaConsultaConstum.setDataReceita(r.getFkReceita().getDataReceita());
