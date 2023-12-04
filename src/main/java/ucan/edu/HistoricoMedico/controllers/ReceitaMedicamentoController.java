@@ -26,37 +26,43 @@ import ucan.edu.HistoricoMedico.services.implementados.ReceitaMedicamentoService
  */
 @RestController
 @RequestMapping("/receitaMedicamento")
-public class ReceitaMedicamentoController extends BaseController{
-    
+public class ReceitaMedicamentoController extends BaseController {
+
     @Autowired
     ReceitaMedicamentoServiceImpl receitaMedicamentoServiceImpl;
-    
-        @GetMapping
+
+    @GetMapping("/findAll/{fkPaciente}")
+    public ResponseEntity<ResponseBody> findAllReceitasByPaciente(@PathVariable("fkPaciente") Integer fkPaciente) {
+        return this.ok("ReceitaMedicamentos listados com sucesso.", this.receitaMedicamentoServiceImpl.findReceitaByPkPaciente(2));
+    }
+
+    @GetMapping
     public ResponseEntity<ResponseBody> findAll() {
         return this.ok("ReceitaMedicamentos listados com sucesso.", this.receitaMedicamentoServiceImpl.findAll());
     }
-    
+
     @GetMapping("/{id}")
-    public ResponseEntity<ResponseBody> findById(@PathVariable("id") Integer id){
+    public ResponseEntity<ResponseBody> findById(@PathVariable("id") Integer id) {
         Optional<ReceitaMedicamento> receitaMedicamento = this.receitaMedicamentoServiceImpl.findById(id);
-        if ( receitaMedicamento.isPresent() )
+        if (receitaMedicamento.isPresent()) {
             return this.ok("ReceitaMedicamento encontrado com sucesso.", receitaMedicamento.get());
+        }
         return this.naoEncontrado("ReceitaMedicamento não encontrado", null);
     }
-    
+
     @PostMapping
     public ResponseEntity<ResponseBody> criar(@RequestBody ReceitaMedicamento ReceitaMedicamento) {
-        return this.created("ReceitaMedicamento adicionado com sucesso.", this.receitaMedicamentoServiceImpl.criar(ReceitaMedicamento) );
+        return this.created("ReceitaMedicamento adicionado com sucesso.", this.receitaMedicamentoServiceImpl.criar(ReceitaMedicamento));
     }
-    
+
     @DeleteMapping("/{id}")
     public ResponseEntity<ResponseBody> eliminar(@PathVariable("id") Integer id) {
-        return this.ok("ReceitaMedicamento eliminado com sucesso.", this.receitaMedicamentoServiceImpl.eliminar(id) );
+        return this.ok("ReceitaMedicamento eliminado com sucesso.", this.receitaMedicamentoServiceImpl.eliminar(id));
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<ResponseBody> editar(@PathVariable("id") Integer id, @RequestBody ReceitaMedicamento ReceitaMedicamento) {
         return this.ok("ReceitaMedicamento editado com sucesso.", (ReceitaMedicamento) receitaMedicamentoServiceImpl.editar(id, ReceitaMedicamento));
     }
-    
+
 }

@@ -20,51 +20,49 @@ import org.springframework.web.bind.annotation.RestController;
 import ucan.edu.HistoricoMedico.entities.Paciente;
 import ucan.edu.HistoricoMedico.https.utils.ResponseBody;
 import ucan.edu.HistoricoMedico.services.implementados.PacienteServiceImpl;
+
 /**
  *
  * @author jussyleitecode
  */
 @RestController
 @RequestMapping("/paciente")
-public class PacienteController extends BaseController
-{
+public class PacienteController extends BaseController {
 
     @Autowired
     PacienteServiceImpl pacienteServiceImpl;
 
     @GetMapping
-    public ResponseEntity<ResponseBody> findAllExame()
-    {
+    public ResponseEntity<ResponseBody> findAllExame() {
         List<Paciente> lista = pacienteServiceImpl.findAll();
-        return this.ok("Paciente encontrados com sucesso!", lista);
+        if (!lista.isEmpty()) {
+            return this.ok("Paciente encontrados com sucesso!", lista);
+        }
+        return this.naoEncontrado("Não existem pacientes cadastrados", lista);
+
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ResponseBody> obter(@PathVariable Integer id)
-    {
+    public ResponseEntity<ResponseBody> obter(@PathVariable Integer id) {
         Optional<Paciente> exame = this.pacienteServiceImpl.findById(id);
-        if (exame.isPresent())
-        {
+        if (exame.isPresent()) {
             return this.ok("Paciente encontrado com sucesso.", exame.get());
         }
         return this.naoEncontrado("Paciente não encontrado", null);
     }
 
     @PostMapping
-    public ResponseEntity<ResponseBody> criar(@RequestBody Paciente paciente)
-    {
+    public ResponseEntity<ResponseBody> criar(@RequestBody Paciente paciente) {
         return this.created("Paciente adicionado com sucesso.", this.pacienteServiceImpl.criar(paciente));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<ResponseBody> eliminar(@PathVariable("id") Integer id)
-    {
+    public ResponseEntity<ResponseBody> eliminar(@PathVariable("id") Integer id) {
         return this.ok("Paciente eliminado com sucesso.", this.pacienteServiceImpl.eliminar(id));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ResponseBody> editar(@PathVariable("id") Integer id, @RequestBody Paciente paciente)
-    {
+    public ResponseEntity<ResponseBody> editar(@PathVariable("id") Integer id, @RequestBody Paciente paciente) {
         return this.ok("Exame editado com sucesso.", (Paciente) pacienteServiceImpl.editar(id, paciente));
     }
 }

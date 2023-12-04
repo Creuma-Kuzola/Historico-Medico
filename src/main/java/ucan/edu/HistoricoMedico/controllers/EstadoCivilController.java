@@ -41,8 +41,10 @@ public class EstadoCivilController extends BaseController
     @GetMapping
     public ResponseEntity<ResponseBody> findAllExame()
     {
-        List<EstadoCivil> lista = estadoCivilServiceImpl.findAll();
-        return this.ok("EstadoCivil encontrados com sucesso!", lista);
+        List<EstadoCivil> lista  = estadoCivilServiceImpl.findAll();
+        if(!lista.isEmpty())
+            return this.ok("EstadoCivil encontrados com sucesso!", lista);
+        return this.naoEncontrado("Não existem estados civis cadastrados", null);
     }
 
 }

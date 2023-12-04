@@ -4,10 +4,13 @@
  */
 package ucan.edu.HistoricoMedico.services;
 
+import java.util.List;
+
 /**
  *
  * @author creuma
  */
 public interface ReceitaMedicamentoService <T, K> {
     
+    public List<T> findReceitaByPkPaciente(K k);
 }
