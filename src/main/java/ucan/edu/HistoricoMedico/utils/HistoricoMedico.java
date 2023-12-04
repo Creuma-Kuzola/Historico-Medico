@@ -21,7 +21,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class HistoricoMedico {
     
-    private List<ConsultaExameCustom> listaDeConsultaExameCustom;
     private List<PacienteCustom> listaDePacienteCustom;
+    private List<ConsultaExameCustom> listaDeConsultaExameCustom;
     private List<ReceitaConsultaCustom> listaReceitaConsultaCustom;
 }
