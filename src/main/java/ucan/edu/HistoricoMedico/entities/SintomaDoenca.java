@@ -4,38 +4,36 @@
  */
 package ucan.edu.HistoricoMedico.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
-import java.util.List;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+
 
 /**
  *
  * @author creuma
  */
 @Entity
-@Table(name = "grau_de_parentesco", catalog = "registo_medico_josefina", schema = "public")
+@Table(name = "sintoma_doenca", catalog = "registo_medico_josefina", schema = "public")
+
 
 @Getter
 @Setter
 @ToString
 
-public class GrauDeParentesco implements Serializable {
+public class SintomaDoenca implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "pk_grau_de_parentesco", nullable = false)
-    private Integer pkGrauDeParentesco;
-    @Basic(optional = false)
-    @Column(nullable = false, length = 2147483647)
-    private String nome;
-    @OneToMany(mappedBy = "fkGrauDeParentesco")
-    @JsonIgnore
-    private List<ContactoDeEmergenciaPaciente> contactoDeEmergenciaPacienteList;
-
+    @Column(name = "pk_sintoma_doenca", nullable = false)
+    private Integer pkSintomaDoenca;
+    @Column(length = 2147483647)
+    private String descricao;
+    @JoinColumn(name = "fk_consulta", referencedColumnName = "pk_consulta")
+    @ManyToOne
+    private Consulta fkConsulta;
 }

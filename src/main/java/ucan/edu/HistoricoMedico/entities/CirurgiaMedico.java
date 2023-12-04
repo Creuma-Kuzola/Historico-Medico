@@ -4,9 +4,7 @@
  */
 package ucan.edu.HistoricoMedico.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
-import java.util.List;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,26 +15,25 @@ import lombok.ToString;
  * @author creuma
  */
 @Entity
-@Table(name = "tipo_diagnostico", catalog = "registo_medico_josefina", schema = "public")
+@Table(name = "cirurgia_medico", catalog = "registo_medico_josefina", schema = "public")
 
+@ToString
 @Getter
 @Setter
-@ToString
 
-public class TipoDiagnostico implements Serializable {
+public class CirurgiaMedico implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "pk_tipo_diagnostico", nullable = false)
-    private Integer pkTipoDiagnostico;
-    @Basic(optional = false)
-    @Column(nullable = false, length = 2147483647)
-    private String nome;
-    @OneToMany(mappedBy = "fkTipoDiagnostico")
-    @JsonIgnore
-    private List<Diagnostico> diagnosticoList;
-
+    @Column(name = "pk_cirurgia_medico", nullable = false)
+    private Integer pkCirurgiaMedico;
+    @JoinColumn(name = "fk_cirurgia", referencedColumnName = "pk_cirurgia")
+    @ManyToOne
+    private Cirurgia fkCirurgia;
+    @JoinColumn(name = "fk_medico", referencedColumnName = "pk_medico")
+    @ManyToOne
+    private Medico fkMedico;
     
 }

@@ -18,11 +18,12 @@ import lombok.ToString;
  * @author creuma
  */
 @Entity
-@Table(catalog = "registo_medico_multiperfil", schema = "public")
+@Table(catalog = "registo_medico_josefina", schema = "public")
 
 @Getter
 @Setter
 @ToString
+
 public class Receita implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -39,8 +40,13 @@ public class Receita implements Serializable {
     @Column(name = "data_controle")
     @Temporal(TemporalType.DATE)
     private Date dataControle;
+    @JoinColumn(name = "fk_consulta", referencedColumnName = "pk_consulta")
+    @ManyToOne
+    private Consulta fkConsulta;
+    @JoinColumn(name = "fk_paciente", referencedColumnName = "pk_paciente")
+    @ManyToOne
+    private Paciente fkPaciente;
     @OneToMany(mappedBy = "fkReceita")
     @JsonIgnore
     private List<ReceitaMedicamento> receitaMedicamentoList;
-    
 }

@@ -5,8 +5,6 @@
 package ucan.edu.HistoricoMedico.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import java.io.Serializable;
 import java.util.List;
 import jakarta.persistence.*;
@@ -19,15 +17,13 @@ import lombok.ToString;
  * @author creuma
  */
 @Entity
-@Table(catalog = "registo_medico_multiperfil", schema = "public")
+@Table(catalog = "registo_medico_josefina", schema = "public")
+
 
 @Getter
 @Setter
 @ToString
 
-
-@JsonIgnoreProperties(ignoreUnknown = true)
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Sexo implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -42,6 +38,9 @@ public class Sexo implements Serializable {
     @OneToMany(mappedBy = "fkSexo")
     @JsonIgnore
     private List<ContactoDeEmergencia> contactoDeEmergenciaList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fkSexo")
+    @JsonIgnore
+    private List<Paciente> pacienteList;
     @OneToMany(mappedBy = "fkSexo")
     @JsonIgnore
     private List<Medico> medicoList;

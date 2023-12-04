@@ -17,29 +17,23 @@ import lombok.ToString;
  * @author creuma
  */
 @Entity
-@Table(name = "contacto_de_emergencia", catalog = "registo_medico_multiperfil", schema = "public")
+@Table(name = "tipo_consulta", catalog = "registo_medico_josefina", schema = "public")
 
 @Getter
 @Setter
 @ToString
 
-public class ContactoDeEmergencia implements Serializable {
+public class TipoConsulta implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "pk_contacto_de_emergencia", nullable = false)
-    private Integer pkContactoDeEmergencia;
+    @Column(name = "pk_tipo_consulta", nullable = false)
+    private Integer pkTipoConsulta;
     @Column(length = 2147483647)
-    private String nome;
-    @Column(name = "numero_telefone", length = 2147483647)
-    private String numeroTelefone;
-    @JoinColumn(name = "fk_sexo", referencedColumnName = "pk_sexo")
-    @ManyToOne
-    private Sexo fkSexo;
-    @OneToMany(mappedBy = "fkContactoDeEmergencia")
+    private String designacao;
+    @OneToMany(mappedBy = "fkTipoConsulta")
     @JsonIgnore
-    private List<ContactoDeEmergenciaPaciente> contactoDeEmergenciaPacienteList;
-
+    private List<Consulta> consultaList;    
 }

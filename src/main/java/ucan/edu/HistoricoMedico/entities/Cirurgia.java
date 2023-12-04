@@ -24,31 +24,26 @@ import lombok.ToString;
 @Setter
 @ToString
 
-public class Medicamento implements Serializable {
+public class Cirurgia implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "pk_medicamento", nullable = false)
-    private Integer pkMedicamento;
-    @Basic(optional = false)
-    @Column(nullable = false, length = 2147483647)
-    private String nome;
-    @Basic(optional = false)
-    @Column(nullable = false)
-    private double preco;
-    @Basic(optional = false)
-    @Column(nullable = false, length = 2147483647)
+    @Column(name = "pk_cirurgia", nullable = false)
+    private Integer pkCirurgia;
+    @Column(name = "data_cirurgia")
+    @Temporal(TemporalType.DATE)
+    private Date dataCirurgia;
+    @Column(name = "duracao_cirurgia", length = 2147483647)
+    private String duracaoCirurgia;
+    @Column(length = 2147483647)
     private String descricao;
-    @Column(name = "data_fabricacao")
-    @Temporal(TemporalType.DATE)
-    private Date dataFabricacao;
-    @Column(name = "data_expiracao")
-    @Temporal(TemporalType.DATE)
-    private Date dataExpiracao;
-    @OneToMany(mappedBy = "fkMedicamento")
+    @OneToMany(mappedBy = "fkCirurgia")
     @JsonIgnore
-    private List<ReceitaMedicamento> receitaMedicamentoList;
-    
+    private List<CirurgiaMedico> cirurgiaMedicoList;
+    @JoinColumn(name = "fk_paciente", referencedColumnName = "pk_paciente")
+    @ManyToOne
+    private Paciente fkPaciente;
+  
 }

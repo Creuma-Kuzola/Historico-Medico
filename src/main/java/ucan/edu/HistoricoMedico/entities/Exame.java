@@ -20,35 +20,28 @@ import lombok.ToString;
 @Entity
 @Table(catalog = "registo_medico_josefina", schema = "public")
 
+
 @Getter
 @Setter
 @ToString
 
-public class Medicamento implements Serializable {
+public class Exame implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "pk_medicamento", nullable = false)
-    private Integer pkMedicamento;
-    @Basic(optional = false)
-    @Column(nullable = false, length = 2147483647)
+    @Column(name = "pk_exame", nullable = false)
+    private Integer pkExame;
+    @Column(length = 2147483647)
     private String nome;
-    @Basic(optional = false)
-    @Column(nullable = false)
-    private double preco;
-    @Basic(optional = false)
-    @Column(nullable = false, length = 2147483647)
-    private String descricao;
-    @Column(name = "data_fabricacao")
+    @Column(length = 2147483647)
+    private String resultado;
+    @Column(name = "data_exame")
     @Temporal(TemporalType.DATE)
-    private Date dataFabricacao;
-    @Column(name = "data_expiracao")
-    @Temporal(TemporalType.DATE)
-    private Date dataExpiracao;
-    @OneToMany(mappedBy = "fkMedicamento")
+    private Date dataExame;
+    @OneToMany(mappedBy = "fkExame")
     @JsonIgnore
-    private List<ReceitaMedicamento> receitaMedicamentoList;
-    
+    private List<ExameConsulta> exameConsultaList;
+ 
 }

@@ -4,8 +4,6 @@
  */
 package ucan.edu.HistoricoMedico.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import java.io.Serializable;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -17,20 +15,18 @@ import lombok.ToString;
  * @author creuma
  */
 @Entity
-@Table(name = "contacto_de_emergencia_paciente", catalog = "registo_medico_multiperfil", schema = "public")
+@Table(name = "contacto_de_emergencia_paciente", catalog = "registo_medico_josefina", schema = "public")
 
 @Getter
 @Setter
 @ToString
 
-@JsonIgnoreProperties(ignoreUnknown = true)
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ContactoDeEmergenciaPaciente implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    
+    @Basic(optional = false)
     @Column(name = "pk_contacto_de_emergencia_paciente", nullable = false)
     private Integer pkContactoDeEmergenciaPaciente;
     @JoinColumn(name = "fk_contacto_de_emergencia", referencedColumnName = "pk_contacto_de_emergencia")
@@ -39,5 +35,8 @@ public class ContactoDeEmergenciaPaciente implements Serializable {
     @JoinColumn(name = "fk_grau_de_parentesco", referencedColumnName = "pk_grau_de_parentesco")
     @ManyToOne
     private GrauDeParentesco fkGrauDeParentesco;
+    @JoinColumn(name = "fk_paciente", referencedColumnName = "pk_paciente")
+    @ManyToOne
+    private Paciente fkPaciente;
     
 }

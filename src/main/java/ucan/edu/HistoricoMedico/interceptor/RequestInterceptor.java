@@ -13,17 +13,17 @@ public class RequestInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request,
                              HttpServletResponse response, Object object) throws Exception {
         
-        System.out.println("In preHandle we are Intercepting the Request");
+        System.out.println("No preHandle estamos a interceptar a solicitação");
         System.out.println("____________________________________________");
         
         String requestURI = request.getRequestURI();
-        String tenantID = request.getHeader("X-TenantID");
+        String tenantID = request.getHeader("TenantID");
         
-        System.out.println("RequestURI::" + requestURI +" || Search for X-TenantID  :: " + tenantID);
+        System.out.println("RequestURI::" + requestURI +" || Pesquisar pelo TenantID  :: " + tenantID);
         System.out.println("____________________________________________");
         
         if (tenantID == null) {
-            response.getWriter().write("X-TenantID not present in the Request Header");
+            response.getWriter().write("TenantID não está presente no cabeçalho da solicitação");
             response.setStatus(400);
             return false;
         }

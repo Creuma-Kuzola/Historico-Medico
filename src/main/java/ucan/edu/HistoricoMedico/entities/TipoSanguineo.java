@@ -4,28 +4,25 @@
  */
 package ucan.edu.HistoricoMedico.entities;
 
-import java.io.Serializable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.List;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 /**
  *
- * @author jussyleitecode
+ * @author creuma
  */
-
+@Entity
+@Table(name = "tipo_sanguineo", catalog = "registo_medico_josefina", schema = "public")
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@Entity
-@Table(name = "tipo_sanguineo", catalog = "registo_medico", schema = "public")
-public class TipoSanguineo implements Serializable
-{
+@ToString
+
+public class TipoSanguineo implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -36,5 +33,8 @@ public class TipoSanguineo implements Serializable
     @Basic(optional = false)
     @Column(nullable = false, length = 2147483647)
     private String nome;
-
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fkTipoSanguineo")
+    @JsonIgnore
+    private List<Paciente> pacienteList;
+    
 }

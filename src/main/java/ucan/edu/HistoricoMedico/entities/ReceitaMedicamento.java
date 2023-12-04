@@ -15,11 +15,12 @@ import lombok.ToString;
  * @author creuma
  */
 @Entity
-@Table(name = "receita_medicamento", catalog = "registo_medico_multiperfil", schema = "public")
+@Table(name = "receita_medicamento", catalog = "registo_medico_josefina", schema = "public")
 
 @Getter
 @Setter
 @ToString
+
 public class ReceitaMedicamento implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -42,5 +43,5 @@ public class ReceitaMedicamento implements Serializable {
     @JoinColumn(name = "fk_receita", referencedColumnName = "pk_receita")
     @ManyToOne
     private Receita fkReceita;
-    
+   
 }

@@ -4,25 +4,27 @@
  */
 package ucan.edu.HistoricoMedico.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
+import java.util.List;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 /**
  *
- * @author jussyleitecode
+ * @author creuma
  */
+@Entity
+@Table(catalog = "registo_medico_josefina", schema = "public")
+
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@Entity
-@Table(catalog = "registo_medico", schema = "public")
-public class Localizacao implements Serializable
-{
+@ToString
+
+public class Localizacao implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -31,4 +33,14 @@ public class Localizacao implements Serializable
     @Basic(optional = false)
     @Column(nullable = false, length = 2147483647)
     private String designaco;
+    @OneToMany(mappedBy = "fkLocalizacaoPai")
+    @JsonIgnore
+    private List<Localizacao> localizacaoList;
+    @JoinColumn(name = "fk_localizacao_pai", referencedColumnName = "pk_localizacao")
+    @ManyToOne
+    private Localizacao fkLocalizacaoPai;
+    @OneToMany(mappedBy = "fkLocalizacao")
+    @JsonIgnore
+    private List<Paciente> pacienteList;
+    
 }
